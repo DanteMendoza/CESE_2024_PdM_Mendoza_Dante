@@ -1,1 +1,5 @@
-# CESE_2024_PdM_Mendoza_Dante
+# CESE-2024
+Curso de Especialización en Sistemas Embebidos
+Programación de microprocesadores
+ 
+Alumno: Mendoza Hector Dante.
