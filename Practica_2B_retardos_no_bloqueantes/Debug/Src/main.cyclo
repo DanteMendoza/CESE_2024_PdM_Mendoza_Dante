@@ -1,0 +1,4 @@
+../Src/main.c:23:6:delayInit	1
+../Src/main.c:28:10:delayRead	3
+../Src/main.c:51:8:delayWrite	1
+../Src/main.c:60:5:main	4
