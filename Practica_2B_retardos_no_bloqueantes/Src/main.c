@@ -13,6 +13,8 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+#define DURACION 100
+
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* UART handler declaration */
@@ -68,7 +70,7 @@ int main(void)
 
   // Inicializar estructuras de retardos para cada LED
   delay_t delayLED1;
-  delayInit(&delayLED1, 100);
+  delayInit(&delayLED1, DURACION);
 
   /* Infinite loop */
   while (1)
@@ -77,7 +79,7 @@ int main(void)
 		if (delayRead(&delayLED1)) {
 			// LED1 (verde)
 			BSP_LED_Toggle(LED1);
-			delayInit(&delayLED1, 100);
+			delayWrite(&delayLED1, DURACION);
 		}
   }
 }
