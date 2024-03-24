@@ -38,34 +38,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Practica_1A_secuencia_de_leds
+BUILD_ARTIFACT_NAME := Practica_2A_retardos_no_bloqueantes
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Practica_1A_secuencia_de_leds.elf \
+Practica_2A_retardos_no_bloqueantes.elf \
 
 MAP_FILES += \
-Practica_1A_secuencia_de_leds.map \
+Practica_2A_retardos_no_bloqueantes.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-Practica_1A_secuencia_de_leds.list \
+Practica_2A_retardos_no_bloqueantes.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Practica_1A_secuencia_de_leds.elf secondary-outputs
+main-build: Practica_2A_retardos_no_bloqueantes.elf secondary-outputs
 
 # Tool invocations
-Practica_1A_secuencia_de_leds.elf Practica_1A_secuencia_de_leds.map: $(OBJS) $(USER_OBJS) C:\Proyectos\STM32CubeIDE\CESE_2024_PdM_Mendoza_Dante\Practica_1A_secuencia_de_leds\STM32F429ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Practica_1A_secuencia_de_leds.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Proyectos\STM32CubeIDE\CESE_2024_PdM_Mendoza_Dante\Practica_1A_secuencia_de_leds\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica_1A_secuencia_de_leds.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Practica_2A_retardos_no_bloqueantes.elf Practica_2A_retardos_no_bloqueantes.map: $(OBJS) $(USER_OBJS) C:\Proyectos\STM32CubeIDE\CESE_2024_PdM_Mendoza_Dante\Practica_2A_retardos_no_bloqueantes\STM32F429ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Practica_2A_retardos_no_bloqueantes.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Proyectos\STM32CubeIDE\CESE_2024_PdM_Mendoza_Dante\Practica_2A_retardos_no_bloqueantes\STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Practica_2A_retardos_no_bloqueantes.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -74,14 +74,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Practica_1A_secuencia_de_leds.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Practica_1A_secuencia_de_leds.list"
+Practica_2A_retardos_no_bloqueantes.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Practica_2A_retardos_no_bloqueantes.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Practica_1A_secuencia_de_leds.elf Practica_1A_secuencia_de_leds.list Practica_1A_secuencia_de_leds.map default.size.stdout
+	-$(RM) Practica_2A_retardos_no_bloqueantes.elf Practica_2A_retardos_no_bloqueantes.list Practica_2A_retardos_no_bloqueantes.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

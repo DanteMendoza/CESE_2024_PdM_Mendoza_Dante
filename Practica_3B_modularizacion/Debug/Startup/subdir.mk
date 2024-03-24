@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (11.3.rel1)
+# Toolchain: GNU Tools for STM32 (12.3.rel1)
 ################################################################################
 
 # Add inputs and outputs from these tool invocations to the build variables 
@@ -16,7 +16,7 @@ S_DEPS += \
 
 # Each subdirectory must supply rules for building sources it contributes
 Startup/%.o: ../Startup/%.s Startup/subdir.mk
-	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3A_modularizacion/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3A_modularizacion/Drivers/CMSIS/Include" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3A_modularizacion/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3A_modularizacion/Drivers/BSP/STM32F4xx_Nucleo_144" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3A_modularizacion/Inc" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3A_modularizacion/Drivers/Core/Inc" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3A_modularizacion/Drivers/API/Inc" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3A_modularizacion/Drivers/API/Src" -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
+	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3B_modularizacion/Drivers/STM32F4xx_HAL_Driver/Inc" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3B_modularizacion/Drivers/CMSIS/Include" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3B_modularizacion/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3B_modularizacion/Drivers/BSP/STM32F4xx_Nucleo_144" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3B_modularizacion/Inc" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3B_modularizacion/Drivers/Core/Inc" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3B_modularizacion/Drivers/API/Inc" -I"C:/Proyectos/STM32CubeIDE/CESE_2024_PdM_Mendoza_Dante/Practica_3B_modularizacion/Drivers/API/Src" -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
 
 clean: clean-Startup
 
