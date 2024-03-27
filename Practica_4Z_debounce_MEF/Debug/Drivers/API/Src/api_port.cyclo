@@ -1,2 +1,0 @@
-../Drivers/API/Src/api_port.c:13:8:read_button	1
-../Drivers/API/Src/api_port.c:22:8:get_systick	1
