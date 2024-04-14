@@ -1,5 +1,5 @@
-#ifndef LIQUIDCRYSTAL_I2C_H_
-#define LIQUIDCRYSTAL_I2C_H_
+#ifndef API_INC_LCD_I2C_H_
+#define API_INC_LCD_I2C_H_
 
 // Cambiar la biblioteca segun tu microcontrolador.
 #include "stm32f4xx_hal.h"
@@ -92,4 +92,4 @@ void HD44780_SetBacklight(uint8_t new_val);
 void HD44780_LoadCustomCharacter(uint8_t char_num, uint8_t *rows);
 void HD44780_PrintStr(const char[]);
 
-#endif /* LIQUIDCRYSTAL_I2C_H_ */
+#endif /* API_INC_LCD_I2C_H_ */
