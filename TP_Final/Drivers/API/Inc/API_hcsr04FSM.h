@@ -1,3 +1,11 @@
+/**
+ ******************************************************************************
+ * @file    API_hcsr04FSM.h
+ * @author  Mendoza, Dante.
+ * @brief   Maquina de estados finitos Sensor ultrasónico HC-SR04.
+ ******************************************************************************
+ */
+
 #ifndef API_HCSR04FSM_H
 #define API_HCSR04FSM_H
 

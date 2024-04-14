@@ -1,3 +1,11 @@
+/**
+ ******************************************************************************
+ * @file    API_hcsr04.h
+ * @author  Mendoza, Dante.
+ * @brief   Modulo Sensor ultrasónico HC-SR04.
+ ******************************************************************************
+ */
+
 #ifndef API_INC_HCSR04_H_
 #define API_INC_HCSR04_H_
 

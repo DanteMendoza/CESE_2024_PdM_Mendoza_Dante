@@ -1,7 +1,15 @@
+/**
+ ******************************************************************************
+ * @file    API_lcd_i2c.h
+ * @author  Mendoza, Dante.
+ * @brief   Pantalla LCD HD44780 con interfaz I2C.
+ ******************************************************************************
+ */
+
 #ifndef API_INC_LCD_I2C_H_
 #define API_INC_LCD_I2C_H_
 
-// Cambiar la biblioteca segun tu microcontrolador.
+// Cambiar la biblioteca segun el microcontrolador.
 #include "stm32f4xx_hal.h"
 
 /* Command */

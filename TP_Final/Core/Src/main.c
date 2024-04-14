@@ -2,16 +2,15 @@
 /**
  ******************************************************************************
  * @file           : main.c
+ * @author  Mendoza, Dante.
  * @brief          : Main program body
  ******************************************************************************
  * @attention
  *
- * Copyright (c) 2024 STMicroelectronics.
- * All rights reserved.
- *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
+ * En este trabajo práctico, se implementará un sistema de medición de distancia utilizando un
+ * sensor ultrasónico HC-SR04 y un microcontrolador NUCLEO-STM32F429ZI.
+ * El objetivo principal es diseñar un sistema que pueda medir la distancia entre un objeto y el sensor,
+ * y luego mostrar esta información en una pantalla LCD mediante el protocolo I2C.
  *
  ******************************************************************************
  */
@@ -119,8 +118,6 @@ int main(void) {
 			HD44780_PrintStr(buffer_lcd);
 			delayWrite(&delay_lcd, REFRESH_LCD);
 		}
-
-		//HAL_Delay(2000);
 		/* USER CODE END WHILE */
 
 		/* USER CODE BEGIN 3 */
