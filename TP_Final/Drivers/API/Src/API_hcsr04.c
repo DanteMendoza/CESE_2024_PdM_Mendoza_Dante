@@ -75,9 +75,10 @@ uint16_t HCSR04_Get_Distance(void) {
 	while (__HAL_TIM_GetCounter(&htim1) < 10)
 		;
 	HAL_GPIO_WritePin(Trigger_GPIO_Port, Trigger_Pin, GPIO_PIN_RESET);
-	// Se habilita la interrupción del canal 1 para permitir que se capture la señal ultrasónica
-	// y se calcule la distancia correspondiente. Esto asegura que el sistema esté preparado para
-	// procesar la señal capturada y actualizar la distancia medida.
+	/** Se habilita la interrupción del canal 1 para permitir que se capture la señal ultrasónica
+	 *  y se calcule la distancia correspondiente. Esto asegura que el sistema esté preparado para
+	 *  procesar la señal capturada y actualizar la distancia medida.
+	 */
 	__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
 	return dist;
 }
