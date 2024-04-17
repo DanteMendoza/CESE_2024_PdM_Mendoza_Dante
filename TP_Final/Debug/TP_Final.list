@@ -23,9 +23,9 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, ALLOC, LOAD, DATA
   9 .ccmram       00000000  10000000  10000000  0000606c  2**0
                   CONTENTS
- 10 .bss          00000240  2000006c  2000006c  0000606c  2**2
+ 10 .bss          00000244  2000006c  2000006c  0000606c  2**2
                   ALLOC
- 11 ._user_heap_stack 00000604  200002ac  200002ac  0000606c  2**0
+ 11 ._user_heap_stack 00000600  200002b0  200002b0  0000606c  2**0
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  0000606c  2**0
                   CONTENTS, READONLY
@@ -1443,6 +1443,7 @@ int main(void) {
  8000f90:	4909      	ldr	r1, [pc, #36]	@ (8000fb8 <main+0x90>)
  8000f92:	480a      	ldr	r0, [pc, #40]	@ (8000fbc <main+0x94>)
  8000f94:	f003 f83e 	bl	8004014 <siprintf>
+			//snprintf(buffer_lcd, sizeof(buffer_lcd), "Distancia: %ucm.", hcsr04_distance);
 			HD44780_PrintStr(buffer_lcd);
  8000f98:	4808      	ldr	r0, [pc, #32]	@ (8000fbc <main+0x94>)
  8000f9a:	f000 fc86 	bl	80018aa <HD44780_PrintStr>
@@ -1453,7 +1454,7 @@ int main(void) {
 		if (delayRead(&delay_lcd)) {
  8000fa8:	e7d1      	b.n	8000f4e <main+0x26>
  8000faa:	bf00      	nop
- 8000fac:	200000f0 	.word	0x200000f0
+ 8000fac:	200000f4 	.word	0x200000f4
  8000fb0:	200000dc 	.word	0x200000dc
  8000fb4:	0800496c 	.word	0x0800496c
  8000fb8:	0800497c 	.word	0x0800497c
@@ -1858,7 +1859,7 @@ void TIM1_CC_IRQHandler(void)
  800115a:	bf00      	nop
  800115c:	bd80      	pop	{r7, pc}
  800115e:	bf00      	nop
- 8001160:	20000100 	.word	0x20000100
+ 8001160:	20000104 	.word	0x20000104
 
 08001164 <_sbrk>:
  *
@@ -1938,7 +1939,7 @@ void *_sbrk(ptrdiff_t incr)
  80011be:	bd80      	pop	{r7, pc}
  80011c0:	20030000 	.word	0x20030000
  80011c4:	00000400 	.word	0x00000400
- 80011c8:	200000fc 	.word	0x200000fc
+ 80011c8:	20000100 	.word	0x20000100
  80011cc:	200002b0 	.word	0x200002b0
 
 080011d0 <SystemInit>:
@@ -2092,7 +2093,7 @@ void MX_TIM1_Init(void)
  8001292:	3718      	adds	r7, #24
  8001294:	46bd      	mov	sp, r7
  8001296:	bd80      	pop	{r7, pc}
- 8001298:	20000100 	.word	0x20000100
+ 8001298:	20000104 	.word	0x20000104
  800129c:	40010000 	.word	0x40010000
 
 080012a0 <HAL_TIM_IC_MspInit>:
@@ -2286,7 +2287,7 @@ LoopFillZerobss:
   ldr r2, =_sbss
  8001388:	2000006c 	.word	0x2000006c
   ldr r4, =_ebss
- 800138c:	200002ac 	.word	0x200002ac
+ 800138c:	200002b0 	.word	0x200002b0
 
 08001390 <ADC_IRQHandler>:
  * @retval None       
@@ -2559,12 +2560,12 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
  8001536:	bd80      	pop	{r7, pc}
  8001538:	b020c49c 	.word	0xb020c49c
  800153c:	3fa16872 	.word	0x3fa16872
- 8001540:	20000156 	.word	0x20000156
- 8001544:	20000148 	.word	0x20000148
- 8001548:	2000014c 	.word	0x2000014c
- 800154c:	20000150 	.word	0x20000150
- 8001550:	20000154 	.word	0x20000154
- 8001554:	20000100 	.word	0x20000100
+ 8001540:	2000015a 	.word	0x2000015a
+ 8001544:	2000014c 	.word	0x2000014c
+ 8001548:	20000150 	.word	0x20000150
+ 800154c:	20000154 	.word	0x20000154
+ 8001550:	20000158 	.word	0x20000158
+ 8001554:	20000104 	.word	0x20000104
 
 08001558 <HCSR04_Init>:
 /**
@@ -2589,7 +2590,7 @@ void HCSR04_Init(void) {
  8001570:	bd80      	pop	{r7, pc}
  8001572:	bf00      	nop
  8001574:	40020000 	.word	0x40020000
- 8001578:	20000100 	.word	0x20000100
+ 8001578:	20000104 	.word	0x20000104
 
 0800157c <HCSR04_Get_Distance>:
  * @brief Obtiene la distancia medida por el sensor HC-SR04.
@@ -2623,6 +2624,9 @@ uint16_t HCSR04_Get_Distance(void) {
  80015a0:	2108      	movs	r1, #8
  80015a2:	4807      	ldr	r0, [pc, #28]	@ (80015c0 <HCSR04_Get_Distance+0x44>)
  80015a4:	f000 fdc4 	bl	8002130 <HAL_GPIO_WritePin>
+	// Se habilita la interrupción del canal 1 para permitir que se capture la señal ultrasónica
+	// y se calcule la distancia correspondiente. Esto asegura que el sistema esté preparado para
+	// procesar la señal capturada y actualizar la distancia medida.
 	__HAL_TIM_ENABLE_IT(&htim1, TIM_IT_CC1);
  80015a8:	4b06      	ldr	r3, [pc, #24]	@ (80015c4 <HCSR04_Get_Distance+0x48>)
  80015aa:	681b      	ldr	r3, [r3, #0]
@@ -2638,8 +2642,8 @@ uint16_t HCSR04_Get_Distance(void) {
  80015bc:	4618      	mov	r0, r3
  80015be:	bd80      	pop	{r7, pc}
  80015c0:	40020000 	.word	0x40020000
- 80015c4:	20000100 	.word	0x20000100
- 80015c8:	20000154 	.word	0x20000154
+ 80015c4:	20000104 	.word	0x20000104
+ 80015c8:	20000158 	.word	0x20000158
 
 080015cc <hcsr04FSM_init>:
 /**
@@ -2659,7 +2663,7 @@ void hcsr04FSM_init(void) {
  80015d8:	46bd      	mov	sp, r7
  80015da:	f85d 7b04 	ldr.w	r7, [sp], #4
  80015de:	4770      	bx	lr
- 80015e0:	20000157 	.word	0x20000157
+ 80015e0:	2000015b 	.word	0x2000015b
 
 080015e4 <hcsr04FSM_update>:
  * - NEAR_VALUE: Valor límite para el estado NEAR_STATE.
@@ -2805,7 +2809,7 @@ void hcsr04FSM_update(uint16_t distance) {
  800168a:	3708      	adds	r7, #8
  800168c:	46bd      	mov	sp, r7
  800168e:	bd80      	pop	{r7, pc}
- 8001690:	20000157 	.word	0x20000157
+ 8001690:	2000015b 	.word	0x2000015b
 
 08001694 <HD44780_Init>:
  * @param rows El número de filas de la pantalla (1 o 2).
@@ -2952,11 +2956,11 @@ void HD44780_Init(uint8_t rows) {
  800177a:	3708      	adds	r7, #8
  800177c:	46bd      	mov	sp, r7
  800177e:	bd80      	pop	{r7, pc}
- 8001780:	2000015b 	.word	0x2000015b
- 8001784:	2000015c 	.word	0x2000015c
- 8001788:	20000158 	.word	0x20000158
- 800178c:	20000159 	.word	0x20000159
- 8001790:	2000015a 	.word	0x2000015a
+ 8001780:	2000015f 	.word	0x2000015f
+ 8001784:	20000160 	.word	0x20000160
+ 8001788:	2000015c 	.word	0x2000015c
+ 800178c:	2000015d 	.word	0x2000015d
+ 8001790:	2000015e 	.word	0x2000015e
  8001794:	20000004 	.word	0x20000004
  8001798:	2000000c 	.word	0x2000000c
 
@@ -3053,7 +3057,7 @@ void HD44780_SetCursor(uint8_t col, uint8_t row) {
  8001820:	bd90      	pop	{r4, r7, pc}
  8001822:	bf00      	nop
  8001824:	08004990 	.word	0x08004990
- 8001828:	2000015b 	.word	0x2000015b
+ 8001828:	2000015f 	.word	0x2000015f
 
 0800182c <HD44780_Display>:
 
@@ -3082,7 +3086,7 @@ void HD44780_Display() {
  800184e:	bf00      	nop
  8001850:	bd80      	pop	{r7, pc}
  8001852:	bf00      	nop
- 8001854:	20000159 	.word	0x20000159
+ 8001854:	2000015d 	.word	0x2000015d
 
 08001858 <HD44780_CreateSpecialChar>:
  * @brief Crea un carácter especial en la memoria CGRAM de la pantalla LCD.
@@ -3315,7 +3319,7 @@ static void ExpanderWrite(uint8_t _data) {
  800199a:	3710      	adds	r7, #16
  800199c:	46bd      	mov	sp, r7
  800199e:	bd80      	pop	{r7, pc}
- 80019a0:	2000015c 	.word	0x2000015c
+ 80019a0:	20000160 	.word	0x20000160
  80019a4:	20000088 	.word	0x20000088
 
 080019a8 <PulseEnable>:
@@ -3613,7 +3617,7 @@ __weak void HAL_IncTick(void)
  8001b48:	4770      	bx	lr
  8001b4a:	bf00      	nop
  8001b4c:	20000018 	.word	0x20000018
- 8001b50:	20000160 	.word	0x20000160
+ 8001b50:	20000164 	.word	0x20000164
 
 08001b54 <HAL_GetTick>:
   * @note This function is declared as __weak to be overwritten in case of other 
@@ -3633,7 +3637,7 @@ __weak uint32_t HAL_GetTick(void)
  8001b60:	f85d 7b04 	ldr.w	r7, [sp], #4
  8001b64:	4770      	bx	lr
  8001b66:	bf00      	nop
- 8001b68:	20000160 	.word	0x20000160
+ 8001b68:	20000164 	.word	0x20000164
 
 08001b6c <HAL_Delay>:
   *       implementations in user file.
@@ -10087,7 +10091,7 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  8004146:	e7ca      	b.n	80040de <_free_r+0x22>
  8004148:	bd38      	pop	{r3, r4, r5, pc}
  800414a:	bf00      	nop
- 800414c:	200002a8 	.word	0x200002a8
+ 800414c:	200002ac 	.word	0x200002ac
 
 08004150 <sbrk_aligned>:
  8004150:	b570      	push	{r4, r5, r6, lr}
@@ -10117,7 +10121,7 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  800418a:	d1f2      	bne.n	8004172 <sbrk_aligned+0x22>
  800418c:	e7ef      	b.n	800416e <sbrk_aligned+0x1e>
  800418e:	bf00      	nop
- 8004190:	200002a4 	.word	0x200002a4
+ 8004190:	200002a8 	.word	0x200002a8
 
 08004194 <_malloc_r>:
  8004194:	e92d 43f8 	stmdb	sp!, {r3, r4, r5, r6, r7, r8, r9, lr}
@@ -10227,19 +10231,19 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  800428a:	6005      	str	r5, [r0, #0]
  800428c:	e7d6      	b.n	800423c <_malloc_r+0xa8>
  800428e:	bf00      	nop
- 8004290:	200002a8 	.word	0x200002a8
+ 8004290:	200002ac 	.word	0x200002ac
 
 08004294 <__malloc_lock>:
  8004294:	4801      	ldr	r0, [pc, #4]	@ (800429c <__malloc_lock+0x8>)
  8004296:	f7ff bf0f 	b.w	80040b8 <__retarget_lock_acquire_recursive>
  800429a:	bf00      	nop
- 800429c:	200002a0 	.word	0x200002a0
+ 800429c:	200002a4 	.word	0x200002a4
 
 080042a0 <__malloc_unlock>:
  80042a0:	4801      	ldr	r0, [pc, #4]	@ (80042a8 <__malloc_unlock+0x8>)
  80042a2:	f7ff bf0a 	b.w	80040ba <__retarget_lock_release_recursive>
  80042a6:	bf00      	nop
- 80042a8:	200002a0 	.word	0x200002a0
+ 80042a8:	200002a4 	.word	0x200002a4
 
 080042ac <__ssputs_r>:
  80042ac:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -10891,7 +10895,7 @@ __weak void HAL_TIMEx_BreakCallback(TIM_HandleTypeDef *htim)
  80048c2:	b103      	cbz	r3, 80048c6 <_sbrk_r+0x1a>
  80048c4:	6023      	str	r3, [r4, #0]
  80048c6:	bd38      	pop	{r3, r4, r5, pc}
- 80048c8:	2000029c 	.word	0x2000029c
+ 80048c8:	200002a0 	.word	0x200002a0
 
 080048cc <memcpy>:
  80048cc:	440a      	add	r2, r1

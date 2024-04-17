@@ -50,7 +50,7 @@
 
 /* USER CODE BEGIN PV */
 uint16_t hcsr04_distance = 0;
-char buffer_lcd[16];
+char buffer_lcd[20];
 delay_t delay_lcd;
 /* USER CODE END PV */
 
@@ -115,6 +115,7 @@ int main(void) {
 
 			HD44780_SetCursor(0, 1); // Segunda linea.
 			sprintf(buffer_lcd, "Distancia: %ucm.", hcsr04_distance);
+			//snprintf(buffer_lcd, sizeof(buffer_lcd), "Distancia: %ucm.", hcsr04_distance);
 			HD44780_PrintStr(buffer_lcd);
 			delayWrite(&delay_lcd, REFRESH_LCD);
 		}
